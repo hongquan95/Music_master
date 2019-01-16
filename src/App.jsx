@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {FormGroup, FormControl, InputGroup, Glyphicon} from 'react-bootstrap';
 import './App.css';
 import Profile from './Profile';
+import Gallery from './Gallery';
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class App extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer BQBjWwPf61M5iL38y1PK3ivoMVbbiqnNmuutbZ6B4Tv8NoruqN3_n-gVUweEAIDl9Ht_HuktbFaO10OT3L9G7xZZVgFnhrfpgk_oXb4w-g4uRBbzfiwkkJOk7D6GBF0NNRoDq5T-BO5_s20-DeDMzsCWg`,
+                'Authorization': `Bearer BQBq5gbsx4dy_IXY4K4KvEjI--_iKAScMJsBb1F2S3qWcNu5Xj9w7DnHLOqv0EOfe3ceh-7p9MiN408vPR_9R0gIO7-8VYQlnyiI3avXWIrmbUZjQ14TVI7aYOQ4-bS7XuDmvT7YKKMkbu5hrT1Rq-nxgtCD-ZRoDc6rvi4HIOCjO6y6IzqLSM5-pQ`,
             },
             tracks: []
         };
@@ -30,14 +31,13 @@ class App extends Component {
         .then(json => {
             const artist =  json.artists.items[0];
             this.setState({artist})
-            
-            FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks&country=US`
+            FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US`
             fetch(FETCH_URL, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer BQBjWwPf61M5iL38y1PK3ivoMVbbiqnNmuutbZ6B4Tv8NoruqN3_n`,
+                    'Authorization': 'Bearer BQCwHJ4FEUW94LvK1rFCpREm0bPfWi_aaTNX7KVIv7aREMQHKFoIUMGmYFb1zABu-W6e4kJqevb__eUmflRWc-YOxE-ijVv8T0RFF4KtSsghuqHifbNSJDtAmiB0IgzZd-csVGESiyGDi4uVzNpnsHAOvDZ1JUYi487LbIcmGh2wv0pQZ2JypejKOw',
                 },
             })
             .then(res => res.json())
@@ -80,9 +80,9 @@ class App extends Component {
                         </div> :
                         <div></div>
                 }
-                <div className="Garelly">
-                    Garelly
-                </div>
+                <Gallery
+                    tracks={this.state.tracks}
+                />
             </div>
         );
     }
